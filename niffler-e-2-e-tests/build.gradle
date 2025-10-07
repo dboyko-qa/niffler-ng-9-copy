@@ -46,21 +46,21 @@ allure {
     }
 }
 
-apollo {
-    service("niffler") {
-        generateKotlinModels.set(false)
-        packageName.set("guru.qa")
-        srcDir("src/test/graphql")
-        mapScalar("Date", "java.util.Date")
-        introspection {
-            endpointUrl.set("$gatewayIntrospectionUrl")
-            schemaFile.set(file("src/test/graphql/schema.graphqls"))
-        }
-        outputDirConnection {
-            connectToJavaSourceSet("test")
-        }
-    }
-}
+//apollo {
+//    service("niffler") {
+//        generateKotlinModels.set(false)
+//        packageName.set("guru.qa")
+//        srcDir("src/test/graphql")
+//        mapScalar("Date", "java.util.Date")
+//        introspection {
+//            endpointUrl.set("$gatewayIntrospectionUrl")
+//            schemaFile.set(file("src/test/graphql/schema.graphqls"))
+//        }
+//        outputDirConnection {
+//            connectToJavaSourceSet("test")
+//        }
+//    }
+//}
 
 xjcGeneration {
     defaultAdditionalXjcOptions = ['encoding': 'UTF-8']
@@ -109,6 +109,7 @@ dependencies {
     testImplementation "com.atomikos:transactions-jdbc:${atomicosVersion}"
     testImplementation "p6spy:p6spy:${p6spyVersion}"
     testImplementation "org.hibernate:hibernate-core:${hibernateVersion}"
+    implementation "org.springframework.security:spring-security-core:${springCryptoVersion}"
     testImplementation "org.springframework.security:spring-security-crypto:${springCryptoVersion}"
     // Allure
     testImplementation "io.qameta.allure:allure-attachments:${allureVersion}"
@@ -166,12 +167,12 @@ tasks.register('printVersion') {
     }
 }
 
-tasks.named { it == "generateNifflerApolloSources" }.configureEach {
-    dependsOn("downloadNifflerApolloSchemaFromIntrospection")
-}
+//tasks.named ( "generateNifflerApolloSources" ){
+//    dependsOn("downloadNifflerApolloSchemaFromIntrospection")
+//}
 
 test {
-    dependsOn("generateNifflerApolloSources")
+//    dependsOn("generateNifflerApolloSources")
     options {
         systemProperties(System.getProperties())
     }
