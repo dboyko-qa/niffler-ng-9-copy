@@ -46,21 +46,21 @@ allure {
     }
 }
 
-//apollo {
-//    service("niffler") {
-//        generateKotlinModels.set(false)
-//        packageName.set("guru.qa")
-//        srcDir("src/test/graphql")
-//        mapScalar("Date", "java.util.Date")
-//        introspection {
-//            endpointUrl.set("$gatewayIntrospectionUrl")
-//            schemaFile.set(file("src/test/graphql/schema.graphqls"))
-//        }
-//        outputDirConnection {
-//            connectToJavaSourceSet("test")
-//        }
-//    }
-//}
+apollo {
+    service("niffler") {
+        generateKotlinModels.set(false)
+        packageName.set("guru.qa")
+        srcDir("src/test/graphql")
+        mapScalar("Date", "java.util.Date")
+        introspection {
+            endpointUrl.set("$gatewayIntrospectionUrl")
+            schemaFile.set(file("src/test/graphql/schema.graphqls"))
+        }
+        outputDirConnection {
+            connectToJavaSourceSet("test")
+        }
+    }
+}
 
 xjcGeneration {
     defaultAdditionalXjcOptions = ['encoding': 'UTF-8']
@@ -167,12 +167,12 @@ tasks.register('printVersion') {
     }
 }
 
-//tasks.named ( "generateNifflerApolloSources" ){
-//    dependsOn("downloadNifflerApolloSchemaFromIntrospection")
-//}
+tasks.named ( "generateNifflerApolloSources" ){
+    dependsOn("downloadNifflerApolloSchemaFromIntrospection")
+}
 
 test {
-//    dependsOn("generateNifflerApolloSources")
+    dependsOn("generateNifflerApolloSources")
     options {
         systemProperties(System.getProperties())
     }
