@@ -109,6 +109,7 @@ dependencies {
     testImplementation "com.atomikos:transactions-jdbc:${atomicosVersion}"
     testImplementation "p6spy:p6spy:${p6spyVersion}"
     testImplementation "org.hibernate:hibernate-core:${hibernateVersion}"
+    implementation "org.springframework.security:spring-security-core:${springCryptoVersion}"
     testImplementation "org.springframework.security:spring-security-crypto:${springCryptoVersion}"
     // Allure
     testImplementation "io.qameta.allure:allure-attachments:${allureVersion}"
@@ -166,7 +167,7 @@ tasks.register('printVersion') {
     }
 }
 
-tasks.named { it == "generateNifflerApolloSources" }.configureEach {
+tasks.named ( "generateNifflerApolloSources" ){
     dependsOn("downloadNifflerApolloSchemaFromIntrospection")
 }
 
