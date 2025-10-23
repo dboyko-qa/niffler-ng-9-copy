@@ -6,6 +6,7 @@ import guru.qa.niffler.model.CategoryJson;
 import guru.qa.niffler.model.SpendJson;
 import guru.qa.niffler.model.UserJson;
 import guru.qa.niffler.service.SpendClient;
+import org.apache.commons.lang.time.DateUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -16,7 +17,6 @@ import org.junit.platform.commons.support.AnnotationSupport;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +52,7 @@ public class SpendingExtension implements BeforeEachCallback, ParameterResolver 
 
                   SpendJson spend = new SpendJson(
                       null,
-                      new Date(),
+                      DateUtils.addDays(new Date(), spendAnno.daysMinus() * (-1)),
                       matchedCategory.orElseGet(() -> new CategoryJson(
                           null,
                           spendAnno.category(),
